@@ -9,6 +9,7 @@ import Home from "../Pages/Home/Home";
 import BioData from "../Pages/BioData/BioData";
 import BiodataDetails from "../Pages/BiodataDetails/BiodataDetails";
 import PrivateRoute from "../Components/Private/PrivateRoute";
+import CheckOut from "../Pages/CheckOut/CheckOut";
 
   const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ import PrivateRoute from "../Components/Private/PrivateRoute";
           path:'/biodata/:id',
           element: <PrivateRoute><BiodataDetails></BiodataDetails></PrivateRoute>,
           loader: ({params}) => fetch(`http://localhost:5000/biodatas/${params.id}`)
+        },
+        {
+          path:'/checkout/:id',
+          element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
         },
       ]
     },

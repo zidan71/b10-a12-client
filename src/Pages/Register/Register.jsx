@@ -1,10 +1,11 @@
 import { Button, Input, Form } from 'antd';
 import { LockOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../Components/Hooks/UseAuth';
 
 function Register() {
   const { register } = useAuth();
+  const navigate = useNavigate()
 
   const onFinish = (values) => {
     const { name, email, photo, password } = values;
@@ -13,7 +14,8 @@ function Register() {
     register(email, password)
       .then(res => {
         console.log(res.user);
-      })
+        navigate('/')
+      })  
       .catch(err => {
         console.error(err.message);
       });

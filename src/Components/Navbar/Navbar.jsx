@@ -20,7 +20,7 @@ function Navbar() {
 
   const menuItems = [
     { key: '1', label: 'Home', path: '/' },
-    { key: '2', label: 'Bio Datas', path: '/biodatas' },
+    { key: '2', label: 'Bio Datas', path: '/biodata' },
     { key: '3', label: 'About Us', path: '/about' },
     { key: '4', label: 'Contact Us', path: '/contact' },
   ];

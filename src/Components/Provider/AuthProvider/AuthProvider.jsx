@@ -49,6 +49,8 @@ const AuthProvider = ({ children }) => {
               } else {
                   localStorage.removeItem('matrimony-token');
               }
+
+              setLoading(false)
           });
   
           return () => unsubscribe();

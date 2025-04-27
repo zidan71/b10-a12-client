@@ -1,11 +1,13 @@
 import { Button, Input, Form } from 'antd';
 import { LockOutlined, UserOutlined, GoogleOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Components/Hooks/UseAuth';
 import { auth } from '../../firebase/firebase.config';
 
 function Login() {
   const { login } = useAuth();
+  const navigate =useNavigate()
+   const location = useLocation()
 
   // Regular email/password login
   const onFinish = (values) => {
@@ -15,6 +17,7 @@ function Login() {
     login(email, password)
       .then((res) => {
         console.log(res.user);
+        navigate(location?.state? location.state : '/')
       })
       .catch((err) => {
         console.error(err.message);

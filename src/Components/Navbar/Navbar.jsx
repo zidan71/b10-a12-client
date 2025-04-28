@@ -94,9 +94,17 @@ function Navbar() {
               {item.label}
             </NavLink>
           ))}
-          <Button type="primary" className="mt-4" block>
+          {
+            user ? <div>
+
+            <Link to={'dashboard'}>
+                        Dashboard
+                    </Link>  
+            
+                    </div> : <Button type="primary" className="mt-4" block>
             Login
           </Button>
+          }
         </div>
       </Drawer>
     </Header>

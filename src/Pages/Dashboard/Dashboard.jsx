@@ -3,6 +3,8 @@ import { Link, Outlet } from 'react-router-dom';
 import { Button } from 'antd';
 import useAuth from '../../Components/Hooks/UseAuth';
 import useAdmin from '../../Components/Hooks/useAdmin';
+import Navbar from '../../Components/Navbar/Navbar';
+import Footers from '../../Components/Footer/Footers';
 
 const Dashboard = () => {
 
@@ -13,85 +15,92 @@ const Dashboard = () => {
 
 
     return (
-        <div className="min-h-screen flex bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+       <>
+                   <Navbar></Navbar>
 
-            {/* Sidebar */}
-            <div className="w-64 bg-white shadow-2xl rounded-r-3xl p-6 flex flex-col  justify-between">
-                <div className=''>
-                    <h2 className="text-2xl font-bold text-purple-700 mb-8 text-center">Dashboard</h2>
+        <div className='bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100'>
+        <div className="min-h-screen max-w-7xl mx-auto flex ">
 
-                    <ul className="space-y-4">
-                        {
-                            isAdmin ? <>
-                                <li><Link to="/dashboard/admin-dashboard">Admin Dashboard</Link></li>
-                                <li><Link to="/dashboard/manage-users">Manage Users</Link></li>
-                                <li><Link to="/dashboard/approve-premium">Approve Premium </Link></li>
-                                <li><Link to="/dashboard/contact-request">Approve Contact Request </Link></li>
-                            </> : <>
-                                <li>
-                                    <Link
-                                        to="/dashboard/edit-biodata"
-                                        className="block text-lg font-medium text-blue-600 hover:bg-blue-100 py-2 px-4 rounded-full transition"
-                                    >
-                                        ✏️ Edit Biodata
-                                    </Link>
-                                </li>
+{/* Sidebar */}
+<div className="w-64 bg-white shadow-2xl rounded-r-3xl p-6 flex flex-col   justify-between">
+    <div className=''>
+        <h2 className="text-2xl font-bold text-purple-700 mb-8 text-center">Dashboard</h2>
 
-                                <li>
-                                    <Link
-                                        to="/dashboard/view-biodata"
-                                        className="block text-lg font-medium text-blue-600 hover:bg-blue-100 py-2 px-4 rounded-full transition"
-                                    >
-                                        📄 View Biodata
-                                    </Link>
-                                </li>
+        <ul className="space-y-4">
+            {
+                isAdmin ? <>
+                    <li><Link to="/dashboard/admin-dashboard">Admin Dashboard</Link></li>
+                    <li><Link to="/dashboard/manage-users">Manage Users</Link></li>
+                    <li><Link to="/dashboard/approve-premium">Approve Premium </Link></li>
+                    <li><Link to="/dashboard/contact-request">Approve Contact Request </Link></li>
+                </> : <>
+                    <li>
+                        <Link
+                            to="/dashboard/edit-biodata"
+                            className="block text-lg font-medium text-blue-600 hover:bg-blue-100 py-2 px-4 rounded-full transition"
+                        >
+                            ✏️ Edit Biodata
+                        </Link>
+                    </li>
 
-                                <li>
-                                    <Link
-                                        to="/dashboard/my-contact-requests"
-                                        className="block text-lg font-medium text-blue-600 hover:bg-blue-100 py-2 px-4 rounded-full transition"
-                                    >
-                                        📞 My Contact Requests
-                                    </Link>
-                                </li>
+                    <li>
+                        <Link
+                            to="/dashboard/view-biodata"
+                            className="block text-lg font-medium text-blue-600 hover:bg-blue-100 py-2 px-4 rounded-full transition"
+                        >
+                            📄 View Biodata
+                        </Link>
+                    </li>
 
-                                <li>
-                                    <Link
-                                        to="/dashboard/favourite-biodatas"
-                                        className="block text-lg font-medium text-blue-600 hover:bg-blue-100 py-2 px-4 rounded-full transition"
-                                    >
-                                        💖 Favourites Biodata
-                                    </Link>
-                                </li>
-                            </>
-                        }
+                    <li>
+                        <Link
+                            to="/dashboard/my-contact-requests"
+                            className="block text-lg font-medium text-blue-600 hover:bg-blue-100 py-2 px-4 rounded-full transition"
+                        >
+                            📞 My Contact Requests
+                        </Link>
+                    </li>
 
-                    </ul>
-                </div>
+                    <li>
+                        <Link
+                            to="/dashboard/favourite-biodatas"
+                            className="block text-lg font-medium text-blue-600 hover:bg-blue-100 py-2 px-4 rounded-full transition"
+                        >
+                            💖 Favourites Biodata
+                        </Link>
+                    </li>
+                </>
+            }
 
-                {/* Logout Button */}
-                <div className="mt-10 ">
-                    <Button
-                        onClick={logOut}
-                        type="primary"
-                        danger
-                        block
-                        className="rounded-full bg-red-500 hover:bg-red-600"
-                    >
-                        Logout
-                    </Button>
-                </div>
-            </div>
+        </ul>
+    </div>
 
-            {/* Main Content Area */}
-            <div className="flex-1 p-10">
+    {/* Logout Button */}
+    <div className="mt-10 ">
+        <Button
+            onClick={logOut}
+            type="primary"
+            danger
+            block
+            className="rounded-full bg-red-500 hover:bg-red-600"
+        >
+            Logout
+        </Button>
+    </div>
+</div>
 
-                <h1 className='text-center text-2xl font-bold text-violet-700'>Welcome To Dashboard</h1>
+{/* Main Content Area */}
+<div className="flex-1 p-10">
 
-                <Outlet />
-            </div>
+    <h1 className='text-center text-2xl font-bold text-violet-700'>Welcome To Dashboard</h1>
 
+    <Outlet />
+</div>
+
+</div>
+            <Footers></Footers>
         </div>
+       </>
     );
 };
 

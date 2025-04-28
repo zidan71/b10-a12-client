@@ -4,11 +4,33 @@ import React from 'react';
 import { useLoaderData, Link } from 'react-router-dom';
 import { Spin } from 'antd';
 import { toast } from 'react-toastify';
+import useAuth from '../../Components/Hooks/UseAuth';
 
 const BiodataDetails = () => {
     const biodata = useLoaderData();
+    const {user} = useAuth()
 
-    const { biodataType, _id } = biodata;
+    const { data: myRequests = [] } = useQuery({
+        queryKey: ['myContactRequests', user?.email],
+        queryFn: async () => {
+          if (!user?.email) return [];
+          const res = await axios.get(`http://localhost:5000/contact-requests/${user.email}`);
+          return res.data;
+        },
+        enabled: !!user?.email, // Only run if user exists
+      });
+
+      const hasApprovedRequest = myRequests.some(
+        (request) => request.biodataId == biodata.biodataId && request.status === 'approved'
+      );
+
+      const isPremium = biodata?.premiumStatus; // Assuming you have premiumStatus field inside biodata
+
+      const canSeeContactInfo = isPremium || hasApprovedRequest;
+
+
+
+    const { biodataType, _id ,contactEmail,mobileNumber } = biodata;
 
     const { data: allBiodatas = [], isLoading } = useQuery({
         queryKey: ['allBiodatas'],
@@ -56,6 +78,11 @@ const BiodataDetails = () => {
         .filter(bio => bio.biodataType === biodataType && bio._id !== _id)
         .slice(0, 3); // Max 3 biodatas
 
+
+
+        
+
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-6 md:p-10">
             {/* Details Section */}
@@ -65,11 +92,22 @@ const BiodataDetails = () => {
                 <div className="flex flex-col md:flex-row items-center gap-6">
                     <img src={biodata.profileImage} alt="Profile" className="w-48 h-48 rounded-full object-cover" />
                     <div className="space-y-2 text-gray-700">
-                        <p><span className="font-semibold">Name:</span> {biodata.biodataType}</p>
+                        <p><span className="font-semibold">Type:</span> {biodata.biodataType}</p>
                         <p><span className="font-semibold">Biodata ID:</span> {biodata.biodataId}</p>
                         <p><span className="font-semibold">Permanent Division:</span> {biodata.permanentDivision}</p>
                         <p><span className="font-semibold">Age:</span> {biodata.age}</p>
                         <p><span className="font-semibold">Occupation:</span> {biodata.occupation}</p>
+
+
+                    {
+                        canSeeContactInfo ? <>
+                        <p>Email : {contactEmail}</p>
+                        <p>Number : {mobileNumber}</p>
+                        </> : <>
+                        <p className='text-pink-600 font-medium mb-4'> Contact Information is hidden. Request access to see Email and Mobile Number</p>
+                        </>
+                    }
+
 
                         <div className='flex gap-x-3'>
                             <button

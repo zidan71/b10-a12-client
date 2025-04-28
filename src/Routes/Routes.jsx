@@ -62,45 +62,46 @@ const stripePromise = loadStripe('pk_test_51RH3ITPm0d3rt2zyEpzwQy1OpQOHh3GiUUITD
             </Elements>
             </PrivateRoute>,
         },
+        
+      ]
+    },
+    {
+      path:'/dashboard',
+      element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+      children: [
         {
-          path:'/dashboard',
-          element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-          children: [
-            {
-              path:'/dashboard/edit-biodata',
-              element:<EditBiodata></EditBiodata>
-            },
-            {
-              path:"/dashboard/favourite-biodatas",
-              element:<FavouritesBio></FavouritesBio>
-            },
-            {
-              path:'/dashboard/my-contact-requests',
-              element:<MyContactRequest></MyContactRequest>
-            },
-            {
-              path:'/dashboard/view-biodata',
-              element:<ViewBiodata></ViewBiodata>
-            },
-            {
-              path:'/dashboard/contact-request',
-              element:<AdminRoute><ContactReq></ContactReq></AdminRoute>
-            },
-            {
-              path:'/dashboard/approve-premium',
-              element:<AdminRoute><PremiumReq></PremiumReq></AdminRoute>
-            },
-            {
-              path:'/dashboard/manage-users',
-              element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
-            },
-            {
-              path:'/dashboard/admin-dashboard',
-              element:<AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>
-            },
-            
-          ]
+          path:'/dashboard/edit-biodata',
+          element:<EditBiodata></EditBiodata>
         },
+        {
+          path:"/dashboard/favourite-biodatas",
+          element:<FavouritesBio></FavouritesBio>
+        },
+        {
+          path:'/dashboard/my-contact-requests',
+          element:<MyContactRequest></MyContactRequest>
+        },
+        {
+          path:'/dashboard/view-biodata',
+          element:<ViewBiodata></ViewBiodata>
+        },
+        {
+          path:'/dashboard/contact-request',
+          element:<PrivateRoute><AdminRoute><ContactReq></ContactReq></AdminRoute></PrivateRoute>
+        },
+        {
+          path:'/dashboard/approve-premium',
+          element:<AdminRoute><PremiumReq></PremiumReq></AdminRoute>
+        },
+        {
+          path:'/dashboard/manage-users',
+          element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+        },
+        {
+          path:'/dashboard/admin-dashboard',
+          element:<AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>
+        },
+        
       ]
     },
   ]);

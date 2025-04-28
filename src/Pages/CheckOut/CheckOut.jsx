@@ -76,6 +76,27 @@ const CheckOut = () => {
             if (paymentResult.paymentIntent.status === 'succeeded') {
                 console.log('Payment Successful!');
                 setSuccess(true);
+
+                if (paymentResult.paymentIntent.status === 'succeeded') {
+                    console.log('Payment Successful!');
+                    setSuccess(true);
+
+                    // Save Contact Request
+                    const contactRequestData = {
+                        biodataId: biodataId,
+                        selfEmail: user?.email,
+                        status: "pending",
+                        requestDate: new Date(),
+                    };
+
+                    await fetch('http://localhost:5000/contact-requests', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(contactRequestData),
+                    });
+                }
+
+
             }
         }
 

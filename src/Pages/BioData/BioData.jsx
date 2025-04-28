@@ -27,10 +27,10 @@ const BioData = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 py-10 px-4 md:px-10">
+    <div className="min-h-screen bg-gradient-to-br  from-blue-100 via-purple-100 to-pink-100 py-10 px-4 md:px-10">
       <h1 className="text-4xl font-bold text-center text-purple-700 mb-10">All Biodatas: {filteredBiodata.length}</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
         {/* Left Side - Filters */}
         <div className="bg-white rounded-lg shadow-md p-6">
           <h2 className="text-2xl font-semibold text-blue-600 mb-4">Filter</h2>

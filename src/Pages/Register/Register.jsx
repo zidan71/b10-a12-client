@@ -1,24 +1,39 @@
-import { Button, Input, Form } from 'antd';
+import { Button, Input, Form, message } from 'antd';
 import { LockOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import useAuth from '../../Components/Hooks/UseAuth';
 
 function Register() {
-  const { register } = useAuth();
-  const navigate = useNavigate()
+  const { register } = useAuth(); 
+  const navigate = useNavigate();
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     const { name, email, photo, password } = values;
-    console.log(name, photo, email, password);
 
-    register(email, password)
-      .then(res => {
-        console.log(res.user);
-        navigate('/')
-      })  
-      .catch(err => {
-        console.error(err.message);
-      });
+    try {
+      // 1. Register with Firebase
+      const res = await register(email, password);
+      console.log('User created:', res.user);
+
+     
+
+      // 3. Save user to your database
+      const userInfo = {
+        email: email,
+        role: 'user', // Always default role "user" when registering
+      };
+      await axios.post('http://localhost:5000/users', userInfo);
+      console.log('User saved to DB');
+
+      // 4. Navigate to home and show success message
+      message.success('Registration Successful!');
+      navigate('/');
+
+    } catch (err) {
+      console.error(err.message);
+      message.error('Registration Failed. Try Again.');
+    }
   };
 
   return (

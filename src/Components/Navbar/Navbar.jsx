@@ -56,7 +56,7 @@ function Navbar() {
 
 <Link to={'dashboard'}>
             Dashboard
-        </Link>  <span className='text-white'>or</span> <Button className='text-white' onClick={logOut}>LogOut</Button>
+        </Link>  
 
         </div>:  <Link to={'/login'}>
        <Button type="primary" className="ml-4">

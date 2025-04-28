@@ -59,7 +59,7 @@ const stripePromise = loadStripe('pk_test_51RH3ITPm0d3rt2zyEpzwQy1OpQOHh3GiUUITD
         },
         {
           path:'/dashboard',
-          element:<Dashboard></Dashboard>,
+          element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
           children: [
             {
               path:'/dashboard/edit-biodata',

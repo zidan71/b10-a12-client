@@ -10,7 +10,7 @@ const useAdmin = () => {
     queryFn: async () => {
       if (!user?.email) return false;
       const res = await axios.get(`http://localhost:5000/users/admin/${user.email}`);
-      return res.data.isAdmin; // server should send { isAdmin: true/false }
+      return res.data.isAdmin; 
     }
   });
 

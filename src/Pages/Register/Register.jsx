@@ -5,28 +5,28 @@ import axios from 'axios';
 import useAuth from '../../Components/Hooks/UseAuth';
 
 function Register() {
-  const { register } = useAuth(); 
+  const { register ,updateUserProfile} = useAuth(); 
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
     const { name, email, photo, password } = values;
 
     try {
-      // 1. Register with Firebase
       const res = await register(email, password);
       console.log('User created:', res.user);
 
-     
+      
+      await updateUserProfile(name, photo);
+      console.log('Profile Updated');
 
-      // 3. Save user to your database
       const userInfo = {
+        name,
         email: email,
-        role: 'user', // Always default role "user" when registering
+       
       };
       await axios.post('http://localhost:5000/users', userInfo);
       console.log('User saved to DB');
 
-      // 4. Navigate to home and show success message
       message.success('Registration Successful!');
       navigate('/');
 

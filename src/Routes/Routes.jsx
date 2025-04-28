@@ -17,6 +17,11 @@ import EditBiodata from "../Pages/Dashboard/EditBiodata";
 import FavouritesBio from "../Pages/Dashboard/FavouritesBio";
 import MyContactRequest from "../Pages/Dashboard/MyContactRequest";
 import ViewBiodata from "../Pages/Dashboard/ViewBiodata";
+import AdminRoute from "../Components/Private/AdminRoute";
+import ContactReq from "../Pages/Dashboard/Admin/ContactReq";
+import PremiumReq from "../Pages/Dashboard/Admin/PremiumReq";
+import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
+import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard";
 
 const stripePromise = loadStripe('pk_test_51RH3ITPm0d3rt2zyEpzwQy1OpQOHh3GiUUITDB8ZSs5q2uJMSLukCtd2JPHERPHlecW2TUh6kcJ5WWdBCGELjGjJ00NS71LVRb');
 
@@ -76,6 +81,22 @@ const stripePromise = loadStripe('pk_test_51RH3ITPm0d3rt2zyEpzwQy1OpQOHh3GiUUITD
             {
               path:'/dashboard/view-biodata',
               element:<ViewBiodata></ViewBiodata>
+            },
+            {
+              path:'/dashboard/contact-request',
+              element:<AdminRoute><ContactReq></ContactReq></AdminRoute>
+            },
+            {
+              path:'/dashboard/approve-premium',
+              element:<AdminRoute><PremiumReq></PremiumReq></AdminRoute>
+            },
+            {
+              path:'/dashboard/manage-users',
+              element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+            },
+            {
+              path:'/dashboard/admin-dashboard',
+              element:<AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>
             },
             
           ]

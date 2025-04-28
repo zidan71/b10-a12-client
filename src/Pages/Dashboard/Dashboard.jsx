@@ -23,9 +23,10 @@ const Dashboard = () => {
                     <ul className="space-y-4">
                         {
                             isAdmin ? <>
-                                <li><Link to="/dashboard/admin-home">Admin Home</Link></li>
-               <li><Link to="/dashboard/manage-users">Manage Users</Link></li>
-          <li><Link to="/dashboard/approve-premium">Approve Premium Requests</Link></li>
+                                <li><Link to="/dashboard/admin-dashboard">Admin Dashboard</Link></li>
+                                <li><Link to="/dashboard/manage-users">Manage Users</Link></li>
+                                <li><Link to="/dashboard/approve-premium">Approve Premium </Link></li>
+                                <li><Link to="/dashboard/contact-request">Approve Contact Request </Link></li>
                             </> : <>
                                 <li>
                                     <Link

@@ -22,8 +22,16 @@ const CheckOut = () => {
         },
     };
 
+
+
     const { id } = useParams();
     const location = useLocation();
+
+    const state = location.state;
+
+    
+
+
     const searchParams = new URLSearchParams(location.search);
     const biodataId = searchParams.get('biodataId'); // Get the biodataId query parameter
 
@@ -83,8 +91,11 @@ const CheckOut = () => {
 
                     // Save Contact Request
                     const contactRequestData = {
-                        biodataId: biodataId,
+                        biodataId: parseInt(biodataId), // store as number for easier comparison
                         selfEmail: user?.email,
+                        biodataName: location.state?.name, // from passed data
+                        contactEmail: location.state?.email,
+                        mobileNumber: location.state?.mobile,
                         status: "pending",
                         requestDate: new Date(),
                     };

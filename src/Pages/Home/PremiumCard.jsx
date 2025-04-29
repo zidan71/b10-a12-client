@@ -44,7 +44,7 @@ const PremiumCard = () => {
 
   return (
     <div className="min-h-screen p-6 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
-      <h2 className="text-3xl font-bold text-center text-purple-700 mb-6">Featured Premium Members</h2>
+      <h2 className="text-3xl font-bold text-center text-purple-700 mb-6">Featured Premium Profiles</h2>
 
       <div className="flex justify-center mb-8">
         <Select defaultValue="asc" onChange={handleSortChange} className="w-60">

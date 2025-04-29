@@ -69,6 +69,15 @@ const Dashboard = () => {
                             💖 Favourites Biodata
                         </Link>
                     </li>
+
+                    <li>
+                        <Link
+                            to="/dashboard/got-married"
+                            className="block text-lg font-medium text-blue-600 hover:bg-blue-100 py-2 px-4 rounded-full transition"
+                        >
+                            💑 Got Married 
+                        </Link>
+                    </li>
                 </>
             }
 

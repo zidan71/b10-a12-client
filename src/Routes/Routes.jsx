@@ -22,6 +22,7 @@ import ContactReq from "../Pages/Dashboard/Admin/ContactReq";
 import PremiumReq from "../Pages/Dashboard/Admin/PremiumReq";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard";
+import GotMarried from "../Pages/Dashboard/GotMarried";
 
 const stripePromise = loadStripe('pk_test_51RH3ITPm0d3rt2zyEpzwQy1OpQOHh3GiUUITDB8ZSs5q2uJMSLukCtd2JPHERPHlecW2TUh6kcJ5WWdBCGELjGjJ00NS71LVRb');
 
@@ -69,6 +70,7 @@ const stripePromise = loadStripe('pk_test_51RH3ITPm0d3rt2zyEpzwQy1OpQOHh3GiUUITD
       path:'/dashboard',
       element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children: [
+        // user
         {
           path:'/dashboard/edit-biodata',
           element:<EditBiodata></EditBiodata>
@@ -79,12 +81,20 @@ const stripePromise = loadStripe('pk_test_51RH3ITPm0d3rt2zyEpzwQy1OpQOHh3GiUUITD
         },
         {
           path:'/dashboard/my-contact-requests',
-          element:<MyContactRequest></MyContactRequest>
+          element:<PrivateRoute><MyContactRequest></MyContactRequest></PrivateRoute>
         },
         {
           path:'/dashboard/view-biodata',
-          element:<ViewBiodata></ViewBiodata>
+          element:<PrivateRoute><ViewBiodata></ViewBiodata></PrivateRoute>
         },
+
+        {
+          path:'/dashboard/got-married',
+          element:<PrivateRoute><GotMarried></GotMarried></PrivateRoute>
+        },
+
+        // admin
+
         {
           path:'/dashboard/contact-request',
           element:<PrivateRoute><AdminRoute><ContactReq></ContactReq></AdminRoute></PrivateRoute>
@@ -101,6 +111,7 @@ const stripePromise = loadStripe('pk_test_51RH3ITPm0d3rt2zyEpzwQy1OpQOHh3GiUUITD
           path:'/dashboard/admin-dashboard',
           element:<AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>
         },
+       
         
       ]
     },

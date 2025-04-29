@@ -45,8 +45,8 @@ const BiodataDetails = () => {
     });
 
     const hasApprovedRequest = myRequests.some(
-        (request) => request.biodataId === biodata.biodataId && request.status === 'approved'
-    );
+        (request) => parseInt(request.biodataId) === biodata.biodataId && request.status === 'approved'
+      );
 
     const canSeeContactInfo = isUserPremium || hasApprovedRequest;
 
@@ -91,55 +91,89 @@ const BiodataDetails = () => {
         <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-6 md:p-10">
             {/* Details Section */}
             <div className="bg-white rounded-xl shadow-lg p-8 max-w-3xl mx-auto mb-10">
-                <h1 className="text-4xl font-bold text-purple-700 mb-6 text-center">Biodata Details</h1>
+  <h1 className="text-4xl font-bold text-purple-700 mb-6 text-center">Biodata Details</h1>
 
-                <div className="flex flex-col md:flex-row items-center gap-6">
-                    <img src={biodata.profileImage} alt="Profile" className="w-48 h-48 rounded-full object-cover" />
+  <div className="flex flex-col md:flex-row items-center gap-6">
+    <img
+      src={biodata.profileImage}
+      alt="Profile"
+      className="w-48 h-full rounded-3xl object-cover"
+    />
 
-                    <div className="space-y-2 text-gray-700 text-center md:text-left">
-                        <p className="text-3xl font-bold text-purple-700">{biodata.name}</p>
+<div className="w-full text-gray-700">
+  <p className="text-3xl font-bold text-purple-700 text-center md:text-left mb-4">{biodata.name}</p>
 
-                        {/* Premium Badge */}
-                        {isUserPremium && (
-                            <span className="inline-block bg-yellow-400 text-yellow-900 text-sm font-semibold px-4 py-1 rounded-full shadow">
-                                ⭐ Premium Member
-                            </span>
-                        )}
+  {/* Premium Badge */}
+  {isUserPremium && (
+    <div className="mb-4">
+      <span className="inline-block bg-yellow-400 text-yellow-900 text-sm font-semibold px-4 py-1 rounded-full shadow">
+        ⭐ Premium Member
+      </span>
+    </div>
+  )}
 
-                        <p><strong>Type:</strong> {biodata.biodataType}</p>
-                        <p><strong>Biodata ID:</strong> {biodata.biodataId}</p>
-                        <p><strong>Permanent Division:</strong> {biodata.permanentDivision}</p>
-                        <p><strong>Age:</strong> {biodata.age}</p>
-                        <p><strong>Occupation:</strong> {biodata.occupation}</p>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <p><strong>🆔 Biodata ID:</strong> {biodata.biodataId}</p>
+    <p><strong>👤 Type:</strong> {biodata.biodataType}</p>
 
-                        {canSeeContactInfo ? (
-                            <>
-                                <p><strong>Email:</strong> {contactEmail}</p>
-                                <p><strong>Mobile:</strong> {mobileNumber}</p>
-                            </>
-                        ) : (
-                            <p className="text-pink-600 font-medium">Contact info hidden — Request access to view</p>
-                        )}
+    <p><strong>📅 Date of Birth:</strong> {biodata.dateOfBirth}</p>
+    <p><strong>📏 Height:</strong> {biodata.height}</p>
 
-                        <div className="flex gap-3 flex-wrap justify-center md:justify-start mt-4">
-                            <button
-                                onClick={handleAddToFavourites}
-                                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full transition"
-                            >
-                                Add to Favourites
-                            </button>
+    <p><strong>⚖️ Weight:</strong> {biodata.weight}</p>
+    <p><strong>🎂 Age:</strong> {biodata.age}</p>
 
-                            {!canSeeContactInfo && (
-                                <Link to={`/checkout/${biodata._id}?biodataId=${biodata.biodataId}`}>
-                                    <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full transition">
-                                        Request Contact Info
-                                    </button>
-                                </Link>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <p><strong>💼 Occupation:</strong> {biodata.occupation}</p>
+    <p><strong>🎨 Race:</strong> {biodata.race}</p>
+
+    <p><strong>👨 Father's Name:</strong> {biodata.fatherName}</p>
+    <p><strong>👩 Mother's Name:</strong> {biodata.motherName}</p>
+
+    <p><strong>🏠 Permanent Division:</strong> {biodata.permanentDivision}</p>
+    <p><strong>📍 Present Division:</strong> {biodata.presentDivision}</p>
+
+    <p><strong>💑 Expected Partner Age:</strong> {biodata.expectedPartnerAge}</p>
+    <p><strong>📐 Expected Partner Height:</strong> {biodata.expectedPartnerHeight}</p>
+
+    <p><strong>⚖️ Expected Partner Weight:</strong> {biodata.expectedPartnerWeight}</p>
+
+    {canSeeContactInfo ? (
+      <>
+        <p><strong>📧 Email:</strong> {contactEmail}</p>
+        <p><strong>📱 Mobile:</strong> {mobileNumber}</p>
+      </>
+    ) : (
+      <p className="text-pink-600 font-medium col-span-2">
+        🚫 Contact info hidden — Request access to view
+      </p>
+    )}
+  </div>
+
+  {/* Buttons */}
+  <div className="flex gap-3 flex-wrap justify-center md:justify-start mt-6">
+    <button
+      onClick={handleAddToFavourites}
+      className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full transition"
+    >
+      ❤️ Add to Favourites
+    </button>
+
+    {!canSeeContactInfo && (
+      <Link to={`/checkout/${biodata._id}?biodataId=${biodata.biodataId} `} state={{
+        name: biodata.name,
+        email: biodata.contactEmail,
+        mobile: biodata.mobileNumber,
+      }}>
+        <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full transition">
+          🔓 Request Contact Info
+        </button>
+      </Link>
+    )}
+  </div>
+</div>
+
+  </div>
+</div>
+
 
             {/* Similar Biodatas */}
             <div className="max-w-5xl mx-auto">

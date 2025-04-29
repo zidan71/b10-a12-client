@@ -47,8 +47,8 @@ const FavouritesBio = () => {
         },
         {
             title: 'Permanent Address',
-            dataIndex: 'permanentAddress',
-            key: 'permanentAddress',
+            dataIndex: 'division',
+            key: 'division',
         },
         {
             title: 'Occupation',

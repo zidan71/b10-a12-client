@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Modal, message } from 'antd';
 import axios from 'axios';
 import useAuth from '../../Components/Hooks/UseAuth';
+import { toast } from 'react-toastify';
 
 const ViewBiodata = () => {
   const { user } = useAuth();
@@ -30,6 +31,7 @@ const ViewBiodata = () => {
 
     try {
       const premiumRequest = {
+        name:biodata.name,
         biodataId: biodata.biodataId,
         userEmail: user.email,
         status: 'pending'
@@ -38,7 +40,7 @@ const ViewBiodata = () => {
       const res = await axios.post('http://localhost:5000/premium-requests', premiumRequest);
 
       if (res.data.insertedId) {
-        message.success('Request sent to Admin for Premium Approval!');
+        toast.success('Request sent to Admin for Premium Approval!');
       }
     } catch (error) {
       console.error(error);

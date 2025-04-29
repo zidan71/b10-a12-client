@@ -16,7 +16,7 @@ const makeAdmin = async (id) => {
 
 // Make Premium Function
 const makePremium = async (id) => {
-    await axios.put(`http://localhost:5000/users/premium/${id}`);
+    await axios.patch(`http://localhost:5000/users/premium/${id}`);
 };
 
 const ManageUsers = () => {

@@ -258,7 +258,7 @@ const EditBiodata = () => {
 
             <Form.Item
               label="Mobile Number"
-              name="mobile"
+              name="mobileNumber"
               rules={[{ required: true, message: 'Please enter mobile number' }]}
             >
               <Input type="text" placeholder="Mobile Number" />

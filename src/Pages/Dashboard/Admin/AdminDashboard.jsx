@@ -2,7 +2,13 @@ import React from 'react';
 import { Card, Col, Row, Statistic } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { UserOutlined, DollarOutlined, ManOutlined, WomanOutlined } from '@ant-design/icons';
+import { 
+  UserOutlined, 
+  DollarOutlined, 
+  ManOutlined, 
+  WomanOutlined, 
+  StarOutlined 
+} from '@ant-design/icons'; 
 
 const AdminDashboard = () => {
   const { data: stats = {}, isLoading } = useQuery({
@@ -18,7 +24,7 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen  p-8">
+    <div className="min-h-screen p-8">
       <h1 className="text-4xl font-bold text-center text-purple-700 mb-10">Admin Dashboard Overview</h1>
 
       <Row gutter={[24, 24]} justify="center">
@@ -34,7 +40,7 @@ const AdminDashboard = () => {
           </Card>
         </Col>
 
-        {/* Revenue */}
+        {/* Total Revenue */}
         <Col xs={24} sm={12} md={6}>
           <Card className="shadow-lg rounded-2xl">
             <Statistic
@@ -68,6 +74,18 @@ const AdminDashboard = () => {
               value={stats.femaleBiodataCount}
               valueStyle={{ color: '#eb2f96' }}
               prefix={<WomanOutlined />}
+            />
+          </Card>
+        </Col>
+
+        {/* Premium Biodatas */}
+        <Col xs={24} sm={12} md={6}>
+          <Card className="shadow-lg rounded-2xl">
+            <Statistic
+              title="Premium Biodatas"
+              value={stats.premiumBiodataCount}
+              valueStyle={{ color: '#faad14' }}
+              prefix={<StarOutlined />}
             />
           </Card>
         </Col>

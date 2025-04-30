@@ -15,7 +15,7 @@ const EditBiodata = () => {
   // Fetch existing biodata for this user
   useEffect(() => {
     if (user?.email) {
-      axios.get(`http://localhost:5000/biodatas/user/${user.email}`)
+      axios.get(`https://assignment-12-server-zeta-three.vercel.app/biodatas/user/${user.email}`)
         .then(res => {
           setExistingBiodata(res.data);
           if (res.data) {
@@ -43,13 +43,13 @@ const EditBiodata = () => {
     try {
       if (existingBiodata) {
         // If already exists --> Update
-        const res = await axios.patch(`http://localhost:5000/biodatas/${existingBiodata._id}`, biodataInfo);
+        const res = await axios.patch(`https://assignment-12-server-zeta-three.vercel.app/biodatas/${existingBiodata._id}`, biodataInfo);
         if (res.data.modifiedCount > 0) {
           toast.success('Biodata updated successfully!');
         }
       } else {
         // If not exists --> Create new
-        const res = await axios.post('http://localhost:5000/biodatas', biodataInfo);
+        const res = await axios.post('https://assignment-12-server-zeta-three.vercel.app/biodatas', biodataInfo);
         if (res.data.insertedId) {
           toast.success('Biodata created successfully!');
         }

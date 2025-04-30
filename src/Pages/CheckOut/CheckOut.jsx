@@ -60,7 +60,7 @@ const CheckOut = () => {
 
         setIsProcessing(true);
 
-        const res = await fetch('http://localhost:5000/create-payment-intent', {
+        const res = await fetch('https://assignment-12-server-zeta-three.vercel.app/create-payment-intent', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ amount: 500 }),
@@ -99,7 +99,7 @@ const CheckOut = () => {
                         requestDate: new Date(),
                     };
 
-                    await fetch('http://localhost:5000/contact-requests', {
+                    await fetch('https://assignment-12-server-zeta-three.vercel.app/contact-requests', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(contactRequestData),

@@ -15,7 +15,7 @@ const BioData = () => {
   const { data: biodata = [] } = useQuery({
     queryKey: ['biodata'],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:5000/biodatas');
+      const res = await axios.get('https://assignment-12-server-zeta-three.vercel.app/biodatas');
       return res.data;
     }
   });

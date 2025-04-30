@@ -24,7 +24,7 @@ const AdminDashboard = () => {
   const { data: stats = {}, isLoading } = useQuery({
     queryKey: ['adminStats'],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:5000/admin-stats');
+      const res = await axios.get('https://assignment-12-server-zeta-three.vercel.app/admin-stats');
       return res.data;
     },
   });

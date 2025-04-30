@@ -9,7 +9,7 @@ const useAdmin = () => {
     queryKey: ['isAdmin', user?.email],
     queryFn: async () => {
       if (!user?.email) return false;
-      const res = await axios.get(`http://localhost:5000/users/admin/${user.email}`);
+      const res = await axios.get(`https://assignment-12-server-zeta-three.vercel.app/users/admin/${user.email}`);
       return res.data.isAdmin; 
     }
   });

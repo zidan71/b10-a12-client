@@ -12,7 +12,7 @@ const PremiumReq = () => {
   const { data: premiumRequests = [], isLoading } = useQuery({
     queryKey: ['premiumRequests'],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:5000/premium-requests');
+      const res = await axios.get('https://assignment-12-server-zeta-three.vercel.app/premium-requests');
       return res.data;
     }
   });
@@ -20,7 +20,7 @@ const PremiumReq = () => {
   const approvePremiumMutation = useMutation({
     mutationFn: async ({ biodataId, requestId }) => {
       // 1. Update Biodata premium status
-      await axios.patch(`http://localhost:5000/biodatas/premium/${biodataId}`);
+      await axios.patch(`https://assignment-12-server-zeta-three.vercel.app/biodatas/premium/${biodataId}`);
     },
     onSuccess: () => {
       toast.success('Biodata upgraded to Premium successfully!');

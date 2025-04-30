@@ -10,7 +10,7 @@ const SuccessMarriage = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const res = await fetch("https://assignment-12-server-zeta-three.vercel.app/successStory");
+        const res = await fetch("http://localhost:5000/successStory");
         const data = await res.json();
 
         // Sort by marriageDate descending

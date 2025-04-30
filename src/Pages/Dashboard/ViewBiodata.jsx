@@ -13,7 +13,7 @@ const ViewBiodata = () => {
   // Fetch user's biodata
   useEffect(() => {
     if (user?.email) {
-      axios.get(`https://assignment-12-server-zeta-three.vercel.app/biodatas/user/${user.email}`)
+      axios.get(`http://localhost:5000/biodatas/user/${user.email}`)
         .then(res => {
           setBiodata(res.data);
         })
@@ -38,7 +38,7 @@ const ViewBiodata = () => {
         status: 'pending'
       };
 
-      const res = await axios.post('https://assignment-12-server-zeta-three.vercel.app/premium-requests', premiumRequest);
+      const res = await axios.post('http://localhost:5000/premium-requests', premiumRequest);
 
       if (res.data.insertedId) {
         toast.success('Request sent to Admin for Premium Approval!');

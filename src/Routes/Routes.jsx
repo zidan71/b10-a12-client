@@ -52,7 +52,7 @@ const stripePromise = loadStripe('pk_test_51RH3ITPm0d3rt2zyEpzwQy1OpQOHh3GiUUITD
         {
           path:'/biodata/:id',
           element: <PrivateRoute><BiodataDetails></BiodataDetails></PrivateRoute>,
-          loader: ({params}) => fetch(`https://assignment-12-server-zeta-three.vercel.app/biodatas/${params.id}`)
+          loader: ({params}) => fetch(`http://localhost:5000/biodatas/${params.id}`)
         },
         {
           path:'/checkout/:id',

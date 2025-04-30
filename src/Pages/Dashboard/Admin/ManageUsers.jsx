@@ -6,21 +6,21 @@ import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
 
 const fetchUsers = async (search) => {
-  const res = await axios.get(`https://assignment-12-server-zeta-three.vercel.app/users?search=${search}`);
+  const res = await axios.get(`http://localhost:5000/users?search=${search}`);
   return res.data;
 };
 
 const fetchPremiumRequests = async () => {
-  const res = await axios.get('https://assignment-12-server-zeta-three.vercel.app/premium-requests');
+  const res = await axios.get('http://localhost:5000/premium-requests');
   return res.data;
 };
 
 const makeAdmin = async (id) => {
-  await axios.patch(`https://assignment-12-server-zeta-three.vercel.app/users/admin/${id}`);
+  await axios.patch(`http://localhost:5000/users/admin/${id}`);
 };
 
 const makePremium = async (id) => {
-  await axios.patch(`https://assignment-12-server-zeta-three.vercel.app/users/premium/${id}`);
+  await axios.patch(`http://localhost:5000/users/premium/${id}`);
 };
 
 const ManageUsers = () => {

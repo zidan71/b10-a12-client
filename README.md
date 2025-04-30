@@ -1,12 +1,26 @@
-# React + Vite
+______________________________________________________SoulMateHub_________________________________________________
+1. Admin Email : a@gmail.com
+2. Admin Pass  : 123456
+3. Live site   : https://matrimony-23c43.web.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+____________________________________________________features______________________________________________________
 
-Currently, two official plugins are available:
+1. 📇 Dynamic Biodata Listing: View, search, filter, and paginate biodata profiles by division, type, and age.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. 🌟 Premium Membership System: Users can request premium access; admins can approve to unlock contact visibility.
 
-## Expanding the ESLint configuration
+3. 🔍 Server-Side Search & Pagination: Efficiently handle large volumes of biodata using optimized backend filtering.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+4. 💰 Stripe Payment Integration: Secure online payments for requesting biodata contact information.
+
+5. 👀 Contact Info Access System: Premium members or approved users can view email and phone numbers.
+
+6. ❤️ Favourites Feature: Users can save profiles they like for quick access later.
+
+7. 📝 Success Story Management: Admins can view and manage submitted marriage stories, including images and reviews.
+
+8. 📊 Admin Dashboard + Pie Chart: Real-time statistics including gender distribution, premium users, and revenue.
+
+9. 💬 Modal-Based Story Viewer: View success stories in a beautiful modal popup for better UX.
+
+10. 📦 MongoDB Integration: All biodata and user details are stored securely in a scalable NoSQL database.

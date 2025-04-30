@@ -16,7 +16,7 @@ const BiodataDetails = () => {
     const { data: allBiodatas = [], isLoading } = useQuery({
         queryKey: ['allBiodatas'],
         queryFn: async () => {
-            const res = await axios.get('https://assignment-12-server-zeta-three.vercel.app/biodatas');
+            const res = await axios.get('http://localhost:5000/biodatas');
             return res.data;
         }
     });
@@ -25,7 +25,7 @@ const BiodataDetails = () => {
     const { data: loggedUser = {} } = useQuery({
         queryKey: ['userRole', user?.email],
         queryFn: async () => {
-            const res = await axios.get(`https://assignment-12-server-zeta-three.vercel.app/users/${user.email}`);
+            const res = await axios.get(`http://localhost:5000/users/${user.email}`);
             return res.data;
         },
         enabled: !!user?.email,
@@ -38,7 +38,7 @@ const BiodataDetails = () => {
     const { data: myRequests = [] } = useQuery({
         queryKey: ['myContactRequests', user?.email],
         queryFn: async () => {
-            const res = await axios.get(`https://assignment-12-server-zeta-three.vercel.app/contact-requests/${user.email}`);
+            const res = await axios.get(`http://localhost:5000/contact-requests/${user.email}`);
             return res.data;
         },
         enabled: !!user?.email,
@@ -63,7 +63,7 @@ const BiodataDetails = () => {
         };
 
         try {
-            const res = await axios.post('https://assignment-12-server-zeta-three.vercel.app/favourites', favouriteData);
+            const res = await axios.post('http://localhost:5000/favourites', favouriteData);
             if (res.data.insertedId) {
                 toast.success("Added to favourites!");
             } else {

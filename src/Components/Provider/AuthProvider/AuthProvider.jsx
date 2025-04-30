@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
                   const userInfo = { email: currentUser.email };
   
                   try {
-                      const res = await fetch('https://assignment-12-server-zeta-three.vercel.app/jwt', {
+                      const res = await fetch('http://localhost:5000/jwt', {
                           method: 'POST',
                           headers: {
                               'Content-Type': 'application/json'

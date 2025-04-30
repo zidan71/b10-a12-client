@@ -11,7 +11,7 @@ const SuccessStoryAdmin = () => {
   const { data: stories = [], isLoading } = useQuery({
     queryKey: ['successStories'],
     queryFn: async () => {
-      const res = await axios.get('https://assignment-12-server-zeta-three.vercel.app/successStory');
+      const res = await axios.get('http://localhost:5000/successStory');
       return res.data;
     }
   });

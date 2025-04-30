@@ -23,6 +23,7 @@ import PremiumReq from "../Pages/Dashboard/Admin/PremiumReq";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard";
 import GotMarried from "../Pages/Dashboard/GotMarried";
+import SuccessStoryAdmin from "../Pages/Dashboard/Admin/SuccessStoryAdmin";
 
 const stripePromise = loadStripe('pk_test_51RH3ITPm0d3rt2zyEpzwQy1OpQOHh3GiUUITDB8ZSs5q2uJMSLukCtd2JPHERPHlecW2TUh6kcJ5WWdBCGELjGjJ00NS71LVRb');
 
@@ -111,6 +112,10 @@ const stripePromise = loadStripe('pk_test_51RH3ITPm0d3rt2zyEpzwQy1OpQOHh3GiUUITD
           path:'/dashboard/admin-dashboard',
           element:<AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>
         },
+        {
+          path:'/dashboard/admin-success',
+          element:<AdminRoute><SuccessStoryAdmin></SuccessStoryAdmin></AdminRoute>
+        }
        
         
       ]

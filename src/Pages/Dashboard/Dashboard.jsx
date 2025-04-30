@@ -33,6 +33,7 @@ const Dashboard = () => {
                     <li><Link to="/dashboard/manage-users">Manage Users</Link></li>
                     <li><Link to="/dashboard/approve-premium">Approve Premium </Link></li>
                     <li><Link to="/dashboard/contact-request">Approve Contact Request </Link></li>
+                    <li><Link to="/dashboard/admin-success">Success Story </Link></li>
                 </> : <>
                     <li>
                         <Link

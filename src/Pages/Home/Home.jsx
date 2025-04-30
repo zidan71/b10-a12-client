@@ -3,6 +3,7 @@ import Banner from '../Banner/Banner';
 import PremiumCard from './PremiumCard';
 import HowItWorks from './HowItWorks';
 import BioDataCounter from './BioDataCounter';
+import SuccessMarriage from './SuccessMarriage';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <PremiumCard></PremiumCard>
             <HowItWorks></HowItWorks>
             <BioDataCounter></BioDataCounter>
+            <SuccessMarriage></SuccessMarriage>
         </div>
     );
 };

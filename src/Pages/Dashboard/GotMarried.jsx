@@ -1,70 +1,92 @@
-import { Form, Input, Button, message } from "antd";
+import React from "react";
+import { Form, Input, Button, message, DatePicker, Card } from "antd";
 
-const { TextArea } = Input;
+const SuccessStoryForm = () => {
+  const [form] = Form.useForm();
 
-export default function SuccessStoryForm() {
   const onFinish = async (values) => {
+    const formattedValues = {
+      ...values,
+      marriageDate: values.marriageDate.format("YYYY-MM-DD"),
+    };
+
     try {
       const res = await fetch("http://localhost:5000/successStory", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify(formattedValues),
       });
 
       if (res.ok) {
         message.success("Success story submitted!");
+        form.resetFields();
       } else {
         message.error("Failed to submit. Try again.");
       }
     } catch (error) {
-      console.error("Error:", error);
-      message.error("Submission failed.");
+      console.error("Error submitting success story:", error);
+      message.error("Something went wrong.");
     }
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-8 p-4 bg-white rounded shadow">
-      <h2 className="text-2xl font-bold text-center mb-6">Share Your Success Story ❤️</h2>
-
-      <Form layout="vertical" onFinish={onFinish} autoComplete="off">
-        <Form.Item
-          name="selfBiodataId"
-          label="Self Biodata ID"
-          rules={[{ required: true, message: "Please enter your biodata ID" }]}
+    <div style={{ maxWidth: 600, margin: "0 auto", padding: "24px" }}>
+      <Card title="Submit Your Success Story" bordered={false}>
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={onFinish}
+          autoComplete="off"
         >
-          <Input type="number" placeholder="e.g., 1" />
-        </Form.Item>
+          <Form.Item
+            name="selfBiodataId"
+            label="Your Biodata ID"
+            rules={[{ required: true, message: "Please enter your biodata ID" }]}
+          >
+            <Input placeholder="Eg. 5" />
+          </Form.Item>
 
-        <Form.Item
-          name="partnerBiodataId"
-          label="Partner Biodata ID"
-          rules={[{ required: true, message: "Please enter partner biodata ID" }]}
-        >
-          <Input type="number" placeholder="e.g., 2" />
-        </Form.Item>
+          <Form.Item
+            name="partnerBiodataId"
+            label="Partner's Biodata ID"
+            rules={[{ required: true, message: "Please enter your partner's biodata ID" }]}
+          >
+            <Input placeholder="Eg. 12" />
+          </Form.Item>
 
-        <Form.Item
-          name="coupleImageUrl"
-          label="Couple Image Link"
-          rules={[{ required: true, message: "Please enter an image URL" }]}
-        >
-          <Input placeholder="https://example.com/image.jpg" />
-        </Form.Item>
+          <Form.Item
+            name="coupleImage"
+            label="Couple Image Link"
+            rules={[{ required: true, message: "Please enter image URL" }]}
+          >
+            <Input placeholder="https://example.com/image.jpg" />
+          </Form.Item>
 
-        <Form.Item
-          name="review"
-          label="Your Review"
-          rules={[{ required: true, message: "Please share your story" }]}
-        >
-          <TextArea rows={5} placeholder="Share your experience using this site..." />
-        </Form.Item>
+          <Form.Item
+            name="marriageDate"
+            label="Marriage Date"
+            rules={[{ required: true, message: "Please select your marriage date" }]}
+          >
+            <DatePicker style={{ width: "100%" }} />
+          </Form.Item>
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit" block>
-            Submit Story
-          </Button>
-        </Form.Item>
-      </Form>
+          <Form.Item
+            name="review"
+            label="Success Story Review"
+            rules={[{ required: true, message: "Please share your experience" }]}
+          >
+            <Input.TextArea rows={4} placeholder="Share your journey using this site..." />
+          </Form.Item>
+
+          <Form.Item>
+            <Button type="primary" htmlType="submit" block>
+              Submit Success Story
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
     </div>
   );
-}
+};
+
+export default SuccessStoryForm;

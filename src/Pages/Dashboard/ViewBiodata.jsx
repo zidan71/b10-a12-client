@@ -81,7 +81,7 @@ const ViewBiodata = () => {
             <p><span className="font-semibold">Expected Partner Height:</span> {biodata.expectedPartnerHeight}</p>
             <p><span className="font-semibold">Expected Partner Weight:</span> {biodata.expectedPartnerWeight}</p>
             <p><span className="font-semibold">Contact Email:</span> {biodata.contactEmail}</p>
-            <p><span className="font-semibold">Mobile Number:</span> {biodata.mobile}</p>
+            <p><span className="font-semibold">Mobile Number:</span> {biodata.mobileNumber}</p>
           </div>
 
           {/* Make Premium Button */}

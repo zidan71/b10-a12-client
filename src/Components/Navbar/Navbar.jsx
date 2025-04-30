@@ -101,9 +101,11 @@ function Navbar() {
                         Dashboard
                     </Link>  
             
-                    </div> : <Button type="primary" className="mt-4" block>
+                    </div> : <Link to={'/login'}>
+                    <Button type="primary" className="mt-4" block>
             Login
           </Button>
+          </Link>
           }
         </div>
       </Drawer>

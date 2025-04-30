@@ -3,6 +3,7 @@ import axios from 'axios';
 import React from 'react';
 import useAuth from '../../Components/Hooks/UseAuth';
 import { Table, Tag, Button, Popconfirm, message } from 'antd';
+import { Helmet } from 'react-helmet-async';
 
 const MyContactRequest = () => {
   const { user } = useAuth();
@@ -87,6 +88,9 @@ const MyContactRequest = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-6">
+      <Helmet>
+      <title>My Contact Req</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center text-purple-700 mb-8">My Contact Requests</h2>
       <div className="bg-white shadow-lg p-6 rounded-xl max-w-6xl mx-auto">
         <Table

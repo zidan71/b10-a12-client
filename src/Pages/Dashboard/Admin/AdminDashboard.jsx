@@ -17,6 +17,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import { Helmet } from 'react-helmet-async';
 
 const COLORS = ['#3f8600', '#1890ff', '#eb2f96', '#faad14','#cf1322'];
 
@@ -43,6 +44,9 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen p-8">
+      <Helmet>
+      <title>Admin Dashboard</title>
+      </Helmet>
       <h1 className="text-4xl font-bold text-center text-purple-700 mb-10">Admin Dashboard Overview</h1>
 
       <Row gutter={[24, 24]} justify="center">

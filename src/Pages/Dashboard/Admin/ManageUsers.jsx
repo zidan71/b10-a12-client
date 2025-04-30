@@ -3,6 +3,7 @@ import { Table, Button, Input, message, Tag } from 'antd';
 import axios from 'axios';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 // Fetch users with optional search
 const fetchUsers = async (search) => {
@@ -99,6 +100,9 @@ const ManageUsers = () => {
 
   return (
     <div className="p-6">
+      <Helmet>
+      <title>Manage Users</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-4">Manage Users</h1>
 
       <Input.Search

@@ -3,6 +3,7 @@ import axios from 'axios';
 import React from 'react';
 import { Button, message, Table } from 'antd';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const ContactReq = () => {
   const queryClient = useQueryClient();
@@ -71,6 +72,9 @@ const ContactReq = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-100 via-blue-100 to-purple-100 p-8">
+      <Helmet>
+      <title>Contact Request</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center text-blue-700 mb-8">Manage Contact Requests</h2>
 
       <div className="max-w-6xl mx-auto">

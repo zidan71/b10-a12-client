@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Table, Button, message } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const FavouritesBio = () => {
     const [favourites, setFavourites] = useState([]);
@@ -69,6 +70,9 @@ const FavouritesBio = () => {
 
     return (
         <div className="p-6">
+            <Helmet>
+            <title>Favourites Bio</title>
+            </Helmet>
             <h1 className="text-2xl font-bold mb-4">Favourite Biodatas</h1>
             <Table
                 columns={columns}

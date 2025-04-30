@@ -6,6 +6,7 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import img1 from '../../assets/annie-spratt-fDghTk7Typw-unsplash.jpg'
 import img2 from '../../assets/jen-theodore-bfFvK1b6-hA-unsplash.jpg'
 import img3 from '../../assets/d-ng-h-u-CCjgYjUudxE-unsplash.jpg'
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
     return (
@@ -34,9 +35,11 @@ const Banner = () => {
                 <div className="text-white p-6">
                   <h2 className="text-4xl font-bold mb-4">Find Your Perfect Match</h2>
                   <p className="text-lg mb-6">Join us today and begin your journey toward love!</p>
-                  <button className="bg-purple-700 text-white py-2 px-6 rounded-full text-xl hover:bg-purple-800 transition">
+                <Link to={'/dashboard'}>
+                <button className="bg-purple-700 text-white py-2 px-6 rounded-full text-xl hover:bg-purple-800 transition">
                     Join Now
                   </button>
+                </Link>
                 </div>
               </div>
             </div>
@@ -54,9 +57,11 @@ const Banner = () => {
                 <div className="text-white p-6">
                   <h2 className="text-4xl font-bold mb-4">Your Future Starts Here</h2>
                   <p className="text-lg mb-6">Explore profiles, connect with people who share your values.</p>
-                  <button className="bg-orange-700 text-white py-2 px-6 rounded-full text-xl hover:bg-orange-800 transition">
+                 <Link to={'/biodata'}>
+                 <button className="bg-orange-700 text-white py-2 px-6 rounded-full text-xl hover:bg-orange-800 transition">
                     Start Searching
                   </button>
+                 </Link>
                 </div>
               </div>
             </div>

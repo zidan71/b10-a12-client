@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
 const divisions = ["Dhaka", "Chattagram", "Rangpur", "Barisal", "Khulna", "Mymensingh", "Sylhet"];
@@ -43,6 +44,9 @@ const BioData = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br  from-blue-100 via-purple-100 to-pink-100 py-10 px-4 md:px-10">
+      <Helmet>
+      <title>Biodata</title>
+      </Helmet>
       <h1 className="text-4xl font-bold text-center text-purple-700 mb-10">All Biodatas: {filteredBiodata.length}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">

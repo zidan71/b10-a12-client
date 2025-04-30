@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button, Modal, Table, message } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const PremiumReq = () => {
   const queryClient = useQueryClient();
@@ -80,6 +81,9 @@ const PremiumReq = () => {
 
   return (
     <div className="min-h-screen p-8 bg-gradient-to-br from-pink-100 via-blue-100 to-purple-100">
+      <Helmet>
+      <title>Premium Request</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center text-purple-700 mb-8">Manage Premium Requests</h2>
 
       <Table 

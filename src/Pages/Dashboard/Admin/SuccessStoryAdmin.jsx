@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Table, Modal, Image, Button } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { Helmet } from 'react-helmet-async';
 
 const SuccessStoryAdmin = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,6 +54,9 @@ const SuccessStoryAdmin = () => {
 
   return (
     <div className="min-h-screen p-8 bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100">
+        <Helmet>
+        <title>Success Story</title>
+        </Helmet>
       <h1 className="text-3xl font-bold text-center text-purple-700 mb-8">Success Stories</h1>
 
       <Table

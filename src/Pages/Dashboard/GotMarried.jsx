@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Input, Button, message, DatePicker, Card } from "antd";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const SuccessStoryForm = () => {
   const [form] = Form.useForm();
@@ -31,6 +32,9 @@ const SuccessStoryForm = () => {
 
   return (
     <div style={{ maxWidth: 600, margin: "0 auto", padding: "24px" }}>
+      <Helmet>
+      <title>Got Married</title>
+      </Helmet>
       <Card title="Submit Your Success Story" bordered={false}>
         <Form
           form={form}

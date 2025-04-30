@@ -5,6 +5,7 @@ import useAuth from '../../Components/Hooks/UseAuth';
 import useAdmin from '../../Components/Hooks/useAdmin';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footers from '../../Components/Footer/Footers';
+import { Helmet } from 'react-helmet-async';
 
 const Dashboard = () => {
 
@@ -16,6 +17,9 @@ const Dashboard = () => {
 
     return (
        <>
+       <Helmet>
+        <title>Dashboard</title>
+       </Helmet>
                    <Navbar></Navbar>
 
         <div className='bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100'>

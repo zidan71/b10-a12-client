@@ -3,6 +3,7 @@ import { Button, Modal, message } from 'antd';
 import axios from 'axios';
 import useAuth from '../../Components/Hooks/UseAuth';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const ViewBiodata = () => {
   const { user } = useAuth();
@@ -58,6 +59,9 @@ const ViewBiodata = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-6 md:p-10">
+      <Helmet>
+        <title>View Biodata</title>
+      </Helmet>
       <div className="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl p-8">
         <h2 className="text-3xl font-bold text-center text-purple-700 mb-8">My Biodata Information</h2>
 

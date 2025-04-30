@@ -9,6 +9,8 @@ const BioData = () => {
   const [selectedDivision, setSelectedDivision] = useState('');
   const [selectedType, setSelectedType] = useState('');
   const [selectedAge, setSelectedAge] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6; // You can adjust this number
 
   const { data: biodata = [] } = useQuery({
     queryKey: ['biodata'],
@@ -25,6 +27,19 @@ const BioData = () => {
     const matchesAge = selectedAge ? data.age >= selectedAge : true;
     return matchesDivision && matchesType && matchesAge;
   });
+
+  // Pagination Logic
+  const totalPages = Math.ceil(filteredBiodata.length / itemsPerPage);
+  const paginatedBiodata = filteredBiodata.slice(
+    (currentPage - 1) * itemsPerPage, 
+    currentPage * itemsPerPage
+  );
+
+  const handlePageChange = (page) => {
+    if (page > 0 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br  from-blue-100 via-purple-100 to-pink-100 py-10 px-4 md:px-10">
@@ -79,7 +94,7 @@ const BioData = () => {
 
         {/* Right Side - Biodata Cards */}
         <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredBiodata.map(data => (
+          {paginatedBiodata.map(data => (
             <div key={data._id} className="bg-white rounded-xl shadow-lg overflow-hidden">
               <img src={data.profileImage} alt={data.biodataType} className="w-full h-48 object-cover" />
               <div className="p-4">
@@ -88,15 +103,34 @@ const BioData = () => {
                 <p className="text-gray-600">Division: {data.permanentDivision}</p>
                 <p className="text-gray-600">Age: {data.age}</p>
                 <p className="text-gray-600">Occupation: {data.occupation}</p>
-               <Link to={`/biodata/${data._id}`}>
-               <button className="mt-4 bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-full w-full transition">
-                  View Profile
-                </button>
-               </Link>
+                <Link to={`/biodata/${data._id}`}>
+                  <button className="mt-4 bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-full w-full transition">
+                    View Profile
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="flex justify-center mt-6">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-4 py-2 mx-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 disabled:bg-gray-300"
+        >
+          Previous
+        </button>
+        <span className="text-lg font-medium text-gray-700">{`Page ${currentPage} of ${totalPages}`}</span>
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 mx-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 disabled:bg-gray-300"
+        >
+          Next
+        </button>
       </div>
     </div>
   );

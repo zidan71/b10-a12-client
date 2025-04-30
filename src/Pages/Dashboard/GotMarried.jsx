@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Input, Button, message, DatePicker, Card } from "antd";
+import { toast } from "react-toastify";
 
 const SuccessStoryForm = () => {
   const [form] = Form.useForm();
@@ -18,14 +19,13 @@ const SuccessStoryForm = () => {
       });
 
       if (res.ok) {
-        message.success("Success story submitted!");
+        toast.success("Success story submitted!");
         form.resetFields();
       } else {
-        message.error("Failed to submit. Try again.");
+        toast.error("Failed to submit. Try again.");
       }
     } catch (error) {
-      console.error("Error submitting success story:", error);
-      message.error("Something went wrong.");
+      toast.error("Something went wrong.");
     }
   };
 

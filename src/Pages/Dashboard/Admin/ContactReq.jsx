@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
 import { Button, message, Table } from 'antd';
+import { toast } from 'react-toastify';
 
 const ContactReq = () => {
   const queryClient = useQueryClient();
@@ -20,7 +21,7 @@ const ContactReq = () => {
       return res.data;
     },
     onSuccess: () => {
-      message.success('Request approved successfully!');
+      toast.success('Request approved successfully!');
       queryClient.invalidateQueries(['manageContactRequests']);
     }
   });

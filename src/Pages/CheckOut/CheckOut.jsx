@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import useAuth from '../../Components/Hooks/UseAuth';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { toast } from 'react-toastify';
 
 const CheckOut = () => {
     const CARD_ELEMENT_OPTIONS = {
@@ -81,12 +82,10 @@ const CheckOut = () => {
         if (paymentResult.error) {
             console.log(paymentResult.error.message);
         } else {
-            if (paymentResult.paymentIntent.status === 'succeeded') {
-                console.log('Payment Successful!');
-                setSuccess(true);
+           
 
                 if (paymentResult.paymentIntent.status === 'succeeded') {
-                    console.log('Payment Successful!');
+                    toast.success('Payment Successful')
                     setSuccess(true);
 
                     // Save Contact Request
@@ -105,7 +104,7 @@ const CheckOut = () => {
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(contactRequestData),
                     });
-                }
+                
 
 
             }

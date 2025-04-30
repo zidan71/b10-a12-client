@@ -10,7 +10,7 @@ function Footers() {
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
         {/* About Section */}
         <div>
-          <h3 className="text-xl font-bold text-blue-600 mb-4">💍 Matrimony</h3>
+          <h3 className="text-xl font-bold text-blue-600 mb-4">💍 SoulMateHub</h3>
           <p className="text-gray-600 text-sm">
             Find your perfect match with us. We bring hearts together with care and trust.
           </p>

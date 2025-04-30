@@ -3,6 +3,9 @@ import 'swiper/css'; // Import Swiper core styles
 import 'swiper/css/navigation'; // If you're using the Navigation module
 import 'swiper/css/pagination'; // If you're using the Pagination module
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import img1 from '../../assets/annie-spratt-fDghTk7Typw-unsplash.jpg'
+import img2 from '../../assets/jen-theodore-bfFvK1b6-hA-unsplash.jpg'
+import img3 from '../../assets/d-ng-h-u-CCjgYjUudxE-unsplash.jpg'
 
 const Banner = () => {
     return (
@@ -23,7 +26,7 @@ const Banner = () => {
           <SwiperSlide>
             <div className="relative w-full h-full bg-gradient-to-r from-blue-500 to-purple-600">
               <img
-                src="https://via.placeholder.com/1500x500?text=Welcome+to+Our+Matrimony+Website"
+                src={img1}
                 alt=""
                 className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
               />
@@ -43,7 +46,7 @@ const Banner = () => {
           <SwiperSlide>
             <div className="relative w-full h-full bg-gradient-to-r from-orange-500 to-yellow-600">
               <img
-                src="https://via.placeholder.com/1500x500?text=Your+Future+Starts+Here"
+                src={img2}
                
                 className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
               />
@@ -63,7 +66,7 @@ const Banner = () => {
           <SwiperSlide>
             <div className="relative w-full h-full bg-gradient-to-r from-teal-500 to-green-600">
               <img
-                src="https://via.placeholder.com/1500x500?text=Join+Our+Matrimonial+Family"
+                src={img3}
                 
                 className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
               />

@@ -3,6 +3,7 @@ import { LockOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from '../../Components/Hooks/UseAuth';
+import { toast } from 'react-toastify';
 
 function Register() {
   const { register ,updateUserProfile} = useAuth(); 
@@ -13,11 +14,11 @@ function Register() {
 
     try {
       const res = await register(email, password);
-      console.log('User created:', res.user);
+      
 
       
       await updateUserProfile(name, photo);
-      console.log('Profile Updated');
+      toast.success('Profile Updated');
 
       const userInfo = {
         name,
@@ -25,14 +26,14 @@ function Register() {
        
       };
       await axios.post('http://localhost:5000/users', userInfo);
-      console.log('User saved to DB');
+      
 
-      message.success('Registration Successful!');
+      toast.success('Registration Successful!');
       navigate('/');
 
     } catch (err) {
-      console.error(err.message);
-      message.error('Registration Failed. Try Again.');
+      toast.error(err.message);
+      toast.error('Registration Failed. Try Again.');
     }
   };
 

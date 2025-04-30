@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Table, Button, Input, message, Tag } from 'antd';
 import axios from 'axios';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 // Fetch users with optional search
 const fetchUsers = async (search) => {
@@ -31,7 +32,7 @@ const ManageUsers = () => {
 
   const { mutate: handleMakeAdmin } = useMutation(makeAdmin, {
     onSuccess: () => {
-      message.success('User is now an Admin');
+      toast.success('User is now an Admin');
       queryClient.invalidateQueries(['users']);
     },
     onError: () => message.error('Failed to make user admin'),
@@ -39,7 +40,7 @@ const ManageUsers = () => {
 
   const { mutate: handleMakePremium } = useMutation(makePremium, {
     onSuccess: () => {
-      message.success('User is now Premium');
+      toast.success('User is now Premium');
       queryClient.invalidateQueries(['users']);
     },
     onError: () => message.error('Failed to make user premium'),

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button, message } from 'antd';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const FavouritesBio = () => {
     const [favourites, setFavourites] = useState([]);
@@ -16,8 +17,8 @@ const FavouritesBio = () => {
             const res = await axios.get('http://localhost:5000/favourites');
             setFavourites(res.data);
         } catch (error) {
-            console.error(error);
-            message.error('Failed to fetch favourites');
+            
+            toast.error('Failed to fetch favourites');
         } finally {
             setLoading(false);
         }
@@ -26,11 +27,11 @@ const FavouritesBio = () => {
     const handleDelete = async (id) => {
         try {
             await axios.delete(`http://localhost:5000/favourites/${id}`);
-            message.success('Deleted successfully');
+            toast.success('Deleted successfully');
             setFavourites(prev => prev.filter(item => item._id !== id));
         } catch (error) {
-            console.error(error);
-            message.error('Failed to delete');
+            
+            toast.error('Failed to delete');
         }
     };
 

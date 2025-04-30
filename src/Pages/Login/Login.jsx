@@ -3,6 +3,7 @@ import { LockOutlined, UserOutlined, GoogleOutlined } from '@ant-design/icons';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Components/Hooks/UseAuth';
 import { auth } from '../../firebase/firebase.config';
+import { toast } from 'react-toastify';
 
 function Login() {
   const { login } = useAuth();
@@ -12,15 +13,16 @@ function Login() {
   // Regular email/password login
   const onFinish = (values) => {
     const { email, password } = values;
-    console.log(email, password);
+    // console.log(email, password);
 
     login(email, password)
       .then((res) => {
-        console.log(res.user);
+        // console.log(res.user);
+
         navigate(location?.state? location.state : '/')
       })
       .catch((err) => {
-        console.error(err.message);
+        toast.error(err.message);
       });
   };
 
@@ -30,12 +32,11 @@ function Login() {
     auth
       .signInWithPopup(provider)
       .then((result) => {
-        const user = result.user;
-        console.log("Google login successful:", user);
-        // You can navigate to homepage or another page here after login
+      toast.success("Google login successful:");
+        navigate(location?.state?location.state:'/')
       })
       .catch((error) => {
-        console.error("Google login error:", error.message);
+        toast.error("Google login error:", error.message);
       });
   };
 

@@ -15,7 +15,7 @@ const FavouritesBio = () => {
     const fetchFavourites = async () => {
         setLoading(true);
         try {
-            const res = await axios.get('http://localhost:5000/favourites');
+            const res = await axios.get('https://assignment-12-server-zeta-three.vercel.app/favourites');
             setFavourites(res.data);
         } catch (error) {
             toast.error('Failed to fetch favourites');
@@ -26,7 +26,7 @@ const FavouritesBio = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/favourites/${id}`);
+            await axios.delete(`https://assignment-12-server-zeta-three.vercel.app/favourites/${id}`);
             toast.success('Deleted successfully');
             setFavourites(prev => prev.filter(item => item._id !== id));
         } catch (error) {

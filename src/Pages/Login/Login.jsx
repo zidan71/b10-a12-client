@@ -10,14 +10,14 @@ function Login() {
   const navigate =useNavigate()
    const location = useLocation()
 
-  // Regular email/password login
+  
   const onFinish = (values) => {
     const { email, password } = values;
-    // console.log(email, password);
+    
 
     login(email, password)
       .then((res) => {
-        // console.log(res.user);
+        
 
         navigate(location?.state? location.state : '/')
       })
@@ -26,7 +26,7 @@ function Login() {
       });
   };
 
-  // Google Sign-In logic
+ 
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
     auth
@@ -66,7 +66,7 @@ function Login() {
             Login
           </Button>
 
-          {/* Google Sign-In Button */}
+         
           <Button
             type="default"
             icon={<GoogleOutlined />}

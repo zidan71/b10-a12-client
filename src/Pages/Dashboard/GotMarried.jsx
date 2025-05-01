@@ -13,7 +13,7 @@ const SuccessStoryForm = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/successStory", {
+      const res = await fetch("https://assignment-12-server-zeta-three.vercel.app/successStory", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formattedValues),

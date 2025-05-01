@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import { auth } from '../../../firebase/firebase.config';
+import { toast } from 'react-toastify';
 
 export const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
@@ -33,13 +34,13 @@ const AuthProvider = ({ children }) => {
    useEffect(() => {
           const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
               setUser(currentUser);
-              console.log('Current User:', currentUser);
+            
   
               if (currentUser) {
                   const userInfo = { email: currentUser.email };
   
                   try {
-                      const res = await fetch('http://localhost:5000/jwt', {
+                      const res = await fetch('https://assignment-12-server-zeta-three.vercel.app/jwt', {
                           method: 'POST',
                           headers: {
                               'Content-Type': 'application/json'
@@ -49,9 +50,9 @@ const AuthProvider = ({ children }) => {
   
                       const data = await res.json();
                       localStorage.setItem('matrimony-token', data.token);
-                      console.log('JWT stored:', data.token);
+                      
                   } catch (error) {
-                      console.error('Error fetching JWT:', error);
+                      toast.error('Error fetching JWT:', error);
                   }
               } else {
                   localStorage.removeItem('matrimony-token');

@@ -10,15 +10,15 @@ const ViewBiodata = () => {
   const [biodata, setBiodata] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  // Fetch user's biodata
+  
   useEffect(() => {
     if (user?.email) {
-      axios.get(`http://localhost:5000/biodatas/user/${user.email}`)
+      axios.get(`https://assignment-12-server-zeta-three.vercel.app/biodatas/user/${user.email}`)
         .then(res => {
           setBiodata(res.data);
         })
         .catch(err => {
-          console.error(err);
+          toast.error(err);
         });
     }
   }, [user]);
@@ -38,14 +38,14 @@ const ViewBiodata = () => {
         status: 'pending'
       };
 
-      const res = await axios.post('http://localhost:5000/premium-requests', premiumRequest);
+      const res = await axios.post('https://assignment-12-server-zeta-three.vercel.app/premium-requests', premiumRequest);
 
       if (res.data.insertedId) {
         toast.success('Request sent to Admin for Premium Approval!');
       }
     } catch (error) {
-      console.error(error);
-      message.error('Something went wrong!');
+      
+      toast.error('Something went wrong!');
     }
   };
 
@@ -88,7 +88,7 @@ const ViewBiodata = () => {
             <p><span className="font-semibold">Mobile Number:</span> {biodata.mobileNumber}</p>
           </div>
 
-          {/* Make Premium Button */}
+          
           <Button
             type="primary"
             className="mt-8 bg-purple-500 hover:bg-purple-600 rounded-full px-8 py-2 text-lg"
@@ -97,7 +97,6 @@ const ViewBiodata = () => {
             Make Biodata Premium
           </Button>
 
-          {/* Confirmation Modal */}
           <Modal
             title="Confirm Premium Request"
             visible={isModalVisible}

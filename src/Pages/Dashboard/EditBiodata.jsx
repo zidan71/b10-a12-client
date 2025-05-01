@@ -13,14 +13,14 @@ const EditBiodata = () => {
   const { user } = useAuth();
   const [existingBiodata, setExistingBiodata] = useState(null);
 
-  // Fetch existing biodata for this user
+ 
   useEffect(() => {
     if (user?.email) {
-      axios.get(`http://localhost:5000/biodatas/user/${user.email}`)
+      axios.get(`https://assignment-12-server-zeta-three.vercel.app/biodatas/user/${user.email}`)
         .then(res => {
           setExistingBiodata(res.data);
           if (res.data) {
-            // Prefill form if biodata exists
+          
             form.setFieldsValue({
               ...res.data,
               dateOfBirth: res.data.dateOfBirth ? moment(res.data.dateOfBirth, "DD-MM-YYYY") : null
@@ -28,12 +28,12 @@ const EditBiodata = () => {
           }
         })
         .catch(err => {
-          console.error(err);
+          toast.error(err);
         });
     }
   }, [user, form]);
 
-  // Submit handler
+  
   const handleSubmit = async (values) => {
     const biodataInfo = {
       ...values,
@@ -43,20 +43,20 @@ const EditBiodata = () => {
 
     try {
       if (existingBiodata) {
-        // If already exists --> Update
-        const res = await axios.patch(`http://localhost:5000/biodatas/${existingBiodata._id}`, biodataInfo);
+        
+        const res = await axios.patch(`https://assignment-12-server-zeta-three.vercel.app/biodatas/${existingBiodata._id}`, biodataInfo);
         if (res.data.modifiedCount > 0) {
           toast.success('Biodata updated successfully!');
         }
       } else {
-        // If not exists --> Create new
-        const res = await axios.post('http://localhost:5000/biodatas', biodataInfo);
+      
+        const res = await axios.post('https://assignment-12-server-zeta-three.vercel.app/biodatas', biodataInfo);
         if (res.data.insertedId) {
           toast.success('Biodata created successfully!');
         }
       }
     } catch (error) {
-      console.error(error);
+      
       toast.error('Something went wrong!');
     }
   };
@@ -80,7 +80,7 @@ const EditBiodata = () => {
             contactEmail: user?.email,
           }}
         >
-          {/* Row 1 */}
+         
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Form.Item
               label="Biodata Type"
@@ -270,7 +270,7 @@ const EditBiodata = () => {
             </Form.Item>
           </div>
 
-          {/* Save and Publish Button */}
+         
           <Form.Item className="text-center mt-8">
             <Button type="primary" htmlType="submit" className="bg-purple-500 hover:bg-purple-600 text-white px-8 py-2 rounded-full">
               Save and Publish Now

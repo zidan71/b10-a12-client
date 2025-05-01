@@ -25,7 +25,7 @@ const AdminDashboard = () => {
   const { data: stats = {}, isLoading } = useQuery({
     queryKey: ['adminStats'],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:5000/admin-stats');
+      const res = await axios.get('https://assignment-12-server-zeta-three.vercel.app/admin-stats');
       return res.data;
     },
   });
@@ -108,7 +108,7 @@ const AdminDashboard = () => {
         </Col>
       </Row>
 
-      {/* Pie Chart Section */}
+     
       <div className="mt-12 max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-lg">
         <h2 className="text-2xl font-bold text-center text-purple-700 mb-6">
           Biodata Distribution Chart

@@ -8,16 +8,16 @@ const CheckOut = () => {
     const CARD_ELEMENT_OPTIONS = {
         style: {
             base: {
-                color: "#6B3E2A", // A warm color matching a matrimony theme
+                color: "#6B3E2A", 
                 fontFamily: 'Georgia, serif',
                 fontSize: "18px",
                 "::placeholder": {
-                    color: "#D0A59F", // Light and elegant placeholder color
+                    color: "#D0A59F", 
                 },
                 lineHeight: "24px",
             },
             invalid: {
-                color: "#e25353", // Error color for invalid input
+                color: "#e25353",
                 iconColor: "#e25353",
             },
         },
@@ -34,7 +34,7 @@ const CheckOut = () => {
 
 
     const searchParams = new URLSearchParams(location.search);
-    const biodataId = searchParams.get('biodataId'); // Get the biodataId query parameter
+    const biodataId = searchParams.get('biodataId'); 
 
     const { user } = useAuth();
     const stripe = useStripe();
@@ -60,7 +60,7 @@ const CheckOut = () => {
 
         setIsProcessing(true);
 
-        const res = await fetch('http://localhost:5000/create-payment-intent', {
+        const res = await fetch('https://assignment-12-server-zeta-three.vercel.app/create-payment-intent', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ amount: 500 }),
@@ -80,7 +80,7 @@ const CheckOut = () => {
         });
 
         if (paymentResult.error) {
-            console.log(paymentResult.error.message);
+            toast.error(paymentResult.error.message);
         } else {
            
 
@@ -88,18 +88,18 @@ const CheckOut = () => {
                     toast.success('Payment Successful')
                     setSuccess(true);
 
-                    // Save Contact Request
+                  
                     const contactRequestData = {
-                        biodataId: parseInt(biodataId), // store as number for easier comparison
+                        biodataId: parseInt(biodataId), 
                         selfEmail: user?.email,
-                        biodataName: location.state?.name, // from passed data
+                        biodataName: location.state?.name,
                         contactEmail: location.state?.email,
                         mobileNumber: location.state?.mobile,
                         status: "pending",
                         requestDate: new Date(),
                     };
 
-                    await fetch('http://localhost:5000/contact-requests', {
+                    await fetch('https://assignment-12-server-zeta-three.vercel.app/contact-requests', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(contactRequestData),
@@ -118,7 +118,7 @@ const CheckOut = () => {
             <div className="bg-white p-8 rounded-3xl shadow-xl w-full max-w-md">
                 <h2 className="text-3xl font-semibold text-center text-pink-600 mb-6">Request Contact Information</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Readonly Biodata ID and Email */}
+                   
                     <div>
                         <label className="text-gray-700 text-lg font-semibold">Biodata ID</label>
                         <input
@@ -139,7 +139,7 @@ const CheckOut = () => {
                             className="w-full mt-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
                         />
                     </div>
-                    {/* Stripe Card Element */}
+                 
                     <div className="p-4 border-2 border-gray-300 rounded-lg">
                         <label className="block text-gray-700 text-lg font-semibold mb-2">Card Information</label>
                         <CardElement options={CARD_ELEMENT_OPTIONS} />

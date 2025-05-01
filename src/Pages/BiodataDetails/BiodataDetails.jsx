@@ -12,33 +12,32 @@ const BiodataDetails = () => {
 
     const { biodataType, _id, contactEmail, mobileNumber } = biodata;
 
-    // All biodatas for similar suggestion
+  
     const { data: allBiodatas = [], isLoading } = useQuery({
         queryKey: ['allBiodatas'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/biodatas');
+            const res = await axios.get('https://assignment-12-server-zeta-three.vercel.app/biodatas');
             return res.data;
         }
     });
 
-    // Get current user info to know if they are premium
+ 
     const { data: loggedUser = {} } = useQuery({
         queryKey: ['userRole', user?.email],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/users/${user.email}`);
+            const res = await axios.get(`https://assignment-12-server-zeta-three.vercel.app/users/${user.email}`);
             return res.data;
         },
         enabled: !!user?.email,
     });
 
-    // Check if current user is premium
     const isUserPremium = loggedUser?.role === 'premium';
 
-    // Get all contact requests by current user
+    
     const { data: myRequests = [] } = useQuery({
         queryKey: ['myContactRequests', user?.email],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/contact-requests/${user.email}`);
+            const res = await axios.get(`https://assignment-12-server-zeta-three.vercel.app/contact-requests/${user.email}`);
             return res.data;
         },
         enabled: !!user?.email,
@@ -63,15 +62,15 @@ const BiodataDetails = () => {
         };
 
         try {
-            const res = await axios.post('http://localhost:5000/favourites', favouriteData);
+            const res = await axios.post('https://assignment-12-server-zeta-three.vercel.app/favourites', favouriteData);
             if (res.data.insertedId) {
                 toast.success("Added to favourites!");
             } else {
                 toast.info("Already in favourites.");
             }
         } catch (error) {
-            console.error(error);
-            message.error('Something went wrong!');
+            
+            toast.error('Something went wrong!');
         }
     };
 
@@ -89,7 +88,7 @@ const BiodataDetails = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 p-6 md:p-10">
-            {/* Details Section */}
+         
             <div className="bg-white rounded-xl shadow-lg p-8 max-w-3xl mx-auto mb-10">
   <h1 className="text-4xl font-bold text-purple-700 mb-6 text-center">Biodata Details</h1>
 
@@ -103,7 +102,7 @@ const BiodataDetails = () => {
 <div className="w-full text-gray-700">
   <p className="text-3xl font-bold text-purple-700 text-center md:text-left mb-4">{biodata.name}</p>
 
-  {/* Premium Badge */}
+ 
   {isUserPremium && (
     <div className="mb-4">
       <span className="inline-block bg-yellow-400 text-yellow-900 text-sm font-semibold px-4 py-1 rounded-full shadow">
@@ -113,6 +112,7 @@ const BiodataDetails = () => {
   )}
 
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <p><strong>🧷 Name:</strong> {biodata.name}</p>
     <p><strong>🆔 Biodata ID:</strong> {biodata.biodataId}</p>
     <p><strong>👤 Type:</strong> {biodata.biodataType}</p>
 
@@ -148,7 +148,7 @@ const BiodataDetails = () => {
     )}
   </div>
 
-  {/* Buttons */}
+
   <div className="flex gap-3 flex-wrap justify-center md:justify-start mt-6">
     <button
       onClick={handleAddToFavourites}
@@ -175,7 +175,7 @@ const BiodataDetails = () => {
 </div>
 
 
-            {/* Similar Biodatas */}
+          
             <div className="max-w-5xl mx-auto">
                 <h2 className="text-3xl font-bold text-blue-600 mb-6 text-center">Similar {biodataType} Biodatas</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

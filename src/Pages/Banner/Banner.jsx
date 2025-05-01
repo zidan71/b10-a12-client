@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css'; // Import Swiper core styles
-import 'swiper/css/navigation'; // If you're using the Navigation module
-import 'swiper/css/pagination'; // If you're using the Pagination module
+import 'swiper/css'; 
+import 'swiper/css/navigation'; 
+import 'swiper/css/pagination';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import img1 from '../../assets/annie-spratt-fDghTk7Typw-unsplash.jpg'
 import img2 from '../../assets/jen-theodore-bfFvK1b6-hA-unsplash.jpg'
@@ -23,7 +23,7 @@ const Banner = () => {
           pagination={{ clickable: true }}
           className="w-full h-full"
         >
-          {/* First Slide */}
+         
           <SwiperSlide>
             <div className="relative w-full h-full bg-gradient-to-r from-blue-500 to-purple-600">
               <img
@@ -45,7 +45,7 @@ const Banner = () => {
             </div>
           </SwiperSlide>
   
-          {/* Second Slide */}
+        
           <SwiperSlide>
             <div className="relative w-full h-full bg-gradient-to-r from-orange-500 to-yellow-600">
               <img
@@ -67,7 +67,7 @@ const Banner = () => {
             </div>
           </SwiperSlide>
   
-          {/* Third Slide */}
+       
           <SwiperSlide>
             <div className="relative w-full h-full bg-gradient-to-r from-teal-500 to-green-600">
               <img

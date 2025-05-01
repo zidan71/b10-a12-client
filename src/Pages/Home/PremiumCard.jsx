@@ -10,16 +10,16 @@ const PremiumCard = () => {
   const [sortedData, setSortedData] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc'); 
 
-  // Fetch all biodatas
+  
   const { data: biodatas = [], isLoading } = useQuery({
     queryKey: ['biodatas'],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:5000/biodatas');
+      const res = await axios.get('https://assignment-12-server-zeta-three.vercel.app/biodatas');
       return res.data;
     },
   });
 
-  // Filter and sort only premium biodatas
+ 
   useEffect(() => {
     const premium = biodatas
       .filter((b) => b.premiumStatus)
@@ -28,12 +28,12 @@ const PremiumCard = () => {
           ? parseInt(a.age) - parseInt(b.age)
           : parseInt(b.age) - parseInt(a.age)
       )
-      .slice(0, 6); // Show max 6
+      .slice(0, 6); 
 
     setSortedData(premium);
   }, [biodatas, sortOrder]);
 
-  // Dropdown handler
+ 
   const handleSortChange = (value) => {
     setSortOrder(value);
   };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Rate, Row, Col, Typography, Spin } from "antd";
+import { toast } from "react-toastify";
 
 const { Title, Paragraph } = Typography;
 
@@ -10,17 +11,17 @@ const SuccessMarriage = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const res = await fetch("http://localhost:5000/successStory");
+        const res = await fetch("https://assignment-12-server-zeta-three.vercel.app/successStory");
         const data = await res.json();
 
-        // Sort by marriageDate descending
+       
         const sorted = data.sort(
           (a, b) => new Date(b.marriageDate) - new Date(a.marriageDate)
         );
         setStories(sorted);
         setLoading(false);
       } catch (error) {
-        console.error("Failed to fetch success stories:", error);
+        toast.error("Failed to fetch success stories:", error);
         setLoading(false);
       }
     };

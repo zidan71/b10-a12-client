@@ -11,14 +11,14 @@ const ContactReq = () => {
   const { data: requests = [], isLoading } = useQuery({
     queryKey: ['manageContactRequests'],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/contact-requests`);
+      const res = await axios.get(`https://assignment-12-server-zeta-three.vercel.app/contact-requests`);
       return res.data;
     }
   });
 
   const approveRequest = useMutation({
     mutationFn: async (id) => {
-      const res = await axios.patch(`http://localhost:5000/contact-requests/approve/${id}`);
+      const res = await axios.patch(`https://assignment-12-server-zeta-three.vercel.app/contact-requests/approve/${id}`);
       return res.data;
     },
     onSuccess: () => {

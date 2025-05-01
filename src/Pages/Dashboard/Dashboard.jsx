@@ -122,7 +122,7 @@ const Dashboard = () => {
                         />
                     </div>
 
-                    {/* Mobile Sidebar Drawer */}
+                   
                     <Drawer
                         title="Dashboard Menu"
                         placement="left"
@@ -135,12 +135,12 @@ const Dashboard = () => {
                         {sidebarContent}
                     </Drawer>
 
-                    {/* Desktop Sidebar - Hidden on mobile, visible on lg screens */}
+                   
                     <div className="hidden lg:block w-64 bg-white shadow-2xl rounded-r-3xl p-6 flex flex-col justify-between">
                         {sidebarContent}
                     </div>
 
-                    {/* Main Content Area */}
+                  
                     <div className="flex-1 p-4 lg:p-10">
                         <h1 className='text-center text-2xl font-bold text-violet-700 mb-6 lg:mb-10'>Welcome To Dashboard</h1>
                         <Outlet />

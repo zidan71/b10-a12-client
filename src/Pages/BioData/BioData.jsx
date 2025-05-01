@@ -11,17 +11,17 @@ const BioData = () => {
   const [selectedType, setSelectedType] = useState('');
   const [selectedAge, setSelectedAge] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6; // You can adjust this number
+  const itemsPerPage = 6; 
 
   const { data: biodata = [] } = useQuery({
     queryKey: ['biodata'],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:5000/biodatas');
+      const res = await axios.get('https://assignment-12-server-zeta-three.vercel.app/biodatas');
       return res.data;
     }
   });
 
-  // Filtering Logic
+  
   const filteredBiodata = biodata.filter(data => {
     const matchesDivision = selectedDivision ? data.permanentDivision === selectedDivision : true;
     const matchesType = selectedType ? data.biodataType === selectedType : true;
@@ -29,7 +29,7 @@ const BioData = () => {
     return matchesDivision && matchesType && matchesAge;
   });
 
-  // Pagination Logic
+  
   const totalPages = Math.ceil(filteredBiodata.length / itemsPerPage);
   const paginatedBiodata = filteredBiodata.slice(
     (currentPage - 1) * itemsPerPage, 
@@ -50,11 +50,11 @@ const BioData = () => {
       <h1 className="text-4xl font-bold text-center text-purple-700 mb-10">All Biodatas: {filteredBiodata.length}</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
-        {/* Left Side - Filters */}
+       
         <div className="bg-white rounded-lg shadow-md p-6">
           <h2 className="text-2xl font-semibold text-blue-600 mb-4">Filter</h2>
 
-          {/* Filter by Division */}
+          
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2">Division</label>
             <select
@@ -69,7 +69,7 @@ const BioData = () => {
             </select>
           </div>
 
-          {/* Filter by Biodata Type */}
+          
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2">Biodata Type</label>
             <select
@@ -83,7 +83,7 @@ const BioData = () => {
             </select>
           </div>
 
-          {/* Filter by Minimum Age */}
+         
           <div>
             <label className="block text-gray-700 font-medium mb-2">Minimum Age</label>
             <input
@@ -96,7 +96,7 @@ const BioData = () => {
           </div>
         </div>
 
-        {/* Right Side - Biodata Cards */}
+        
         <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {paginatedBiodata.map(data => (
             <div key={data._id} className="bg-white rounded-xl shadow-lg overflow-hidden">
@@ -118,7 +118,7 @@ const BioData = () => {
         </div>
       </div>
 
-      {/* Pagination Controls */}
+     
       <div className="flex justify-center mt-6">
         <button
           onClick={() => handlePageChange(currentPage - 1)}

@@ -18,14 +18,14 @@ function Register() {
 
       
       await updateUserProfile(name, photo);
-      toast.success('Profile Updated');
+    
 
       const userInfo = {
         name,
         email: email,
        
       };
-      await axios.post('http://localhost:5000/users', userInfo);
+      await axios.post('https://assignment-12-server-zeta-three.vercel.app/users', userInfo);
       
 
       toast.success('Registration Successful!');

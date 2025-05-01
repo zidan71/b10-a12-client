@@ -19,7 +19,7 @@ function Login() {
     login(email, password)
       .then((res) => {
         
-
+        toast.success('Login Successful')
         navigate(location?.state? location.state : '/')
       })
       .catch((err) => {

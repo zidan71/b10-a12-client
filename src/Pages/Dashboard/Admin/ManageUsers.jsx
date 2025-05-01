@@ -85,7 +85,7 @@ const ManageUsers = () => {
       width: 200,
       render: (_, record) => {
         const status = premiumStatusMap[record.email];
-        if (record.role === 'premium' || status === 'approved') {
+        if (record.role === 'premium') {
           return <Tag color="green">Already Premium</Tag>;
         }
         if (status === 'pending') {

@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Components/Hooks/UseAuth';
 import { auth } from '../../firebase/firebase.config';
 import { toast } from 'react-toastify';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 function Login() {
   const { login } = useAuth();
@@ -29,15 +30,16 @@ function Login() {
  
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
-    auth
-      .signInWithPopup(provider)
-      .then((result) => {
-      toast.success("Google login successful:");
-        navigate(location?.state?location.state:'/')
-      })
-      .catch((error) => {
-        toast.error("Google login error:", error.message);
-      });
+    
+    signInWithPopup(auth,provider)
+    .then( () => {
+      toast.success('login success')
+      navigate(location?.state ? location.state : '/')
+    }
+    )
+    .catch(err => {
+      toast.error(err.message)
+    })
   };
 
   return (

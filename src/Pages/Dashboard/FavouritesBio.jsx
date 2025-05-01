@@ -3,10 +3,12 @@ import { Table, Button, message } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
+import useAuth from '../../Components/Hooks/UseAuth';
 
 const FavouritesBio = () => {
     const [favourites, setFavourites] = useState([]);
     const [loading, setLoading] = useState(false);
+    const {user} = useAuth()
 
     useEffect(() => {
         fetchFavourites();
@@ -15,14 +17,14 @@ const FavouritesBio = () => {
     const fetchFavourites = async () => {
         setLoading(true);
         try {
-            const res = await axios.get('https://assignment-12-server-zeta-three.vercel.app/favourites');
-            setFavourites(res.data);
+          const res = await axios.get(`https://assignment-12-server-zeta-three.vercel.app/favourites?email=${user?.email}`);
+          setFavourites(res.data);
         } catch (error) {
-            toast.error('Failed to fetch favourites');
+          toast.error('Failed to fetch favourites');
         } finally {
-            setLoading(false);
+          setLoading(false);
         }
-    };
+      };
 
     const handleDelete = async (id) => {
         try {
